@@ -7,6 +7,7 @@ public class EnemyHandler : MonoBehaviour
     private float speed = 2.5f;
     private Rigidbody enemyRigidbody;
     private GameObject player;
+    private float yDestroyLimit = 10.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,5 +22,10 @@ public class EnemyHandler : MonoBehaviour
         Vector3 lookVector = (player.transform.position - transform.position).normalized;
 
         enemyRigidbody.AddForce(lookVector * speed);
+
+        if (transform.position.y < -yDestroyLimit)
+        {
+            Destroy(gameObject);
+        }
     }
 }
